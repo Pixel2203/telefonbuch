@@ -59,7 +59,18 @@ namespace Test
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            DatabaseManager manager = new DatabaseManager();
+            bool worked = manager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
+            if (worked)
+            {
+                string sql = "SELECT * FROM Users";
+                manager.requestFromDatabase(sql);
+            }
+            else
+            {
+                Console.WriteLine("Connection to Database failed!");
+            }
+            
         }
     }
 }
