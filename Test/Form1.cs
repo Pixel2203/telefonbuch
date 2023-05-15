@@ -27,9 +27,37 @@ namespace Test
 
         }
 
+        List<string> items = new List<string>();
         private void Form1_Load(object sender, EventArgs e)
         {
+            items.AddRange(new string[] { "Cat", "Dog", "Carrots", "Brocolli" });
 
+            foreach (string str in items)
+            {
+                listBox1.Items.Add(str);
+
+            }
+        }
+       
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+
+            foreach (string str in items)
+            {
+                if (str.ToUpper().Contains(textBox1.Text.ToUpper()))
+                {
+                    listBox1.Items.Add(str);
+                }
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+
+            //load user data
         }
     }
 }
