@@ -44,7 +44,7 @@
             this.listBox1.Size = new System.Drawing.Size(1006, 524);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
+            //
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(75, 52);
@@ -53,7 +53,7 @@
             this.textBox1.Size = new System.Drawing.Size(906, 26);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
+            //
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(992, 52);

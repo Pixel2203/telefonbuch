@@ -59,5 +59,10 @@ namespace Test
 
             //load user data
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+             new Form2().ShowDialog();
+        }
     }
 }
