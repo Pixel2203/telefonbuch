@@ -63,7 +63,7 @@ namespace Test
             bool worked = manager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
             if (worked)
             {
-                string sql = "SELECT * FROM Users";
+                string sql = "INSERT INTO Users ('vorname','nachname','telefon','adresse','hausnummer','email','oid') VALUES ('Hans','Peter','012121032','Wilde Straße', 'wild@mail.com', '2')";
                 manager.requestFromDatabase(sql);
             }
             else
