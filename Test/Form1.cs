@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace Test
 {
     public partial class Form1 : Form
@@ -63,6 +62,12 @@ namespace Test
         private void button2_Click(object sender, EventArgs e)
         {
              new Form2().ShowDialog();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+        
+             
         }
     }
 }

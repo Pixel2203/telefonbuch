@@ -59,6 +59,8 @@ namespace Test
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+    
+
             DatabaseManager manager = new DatabaseManager();
             bool worked = manager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
             if (worked)
