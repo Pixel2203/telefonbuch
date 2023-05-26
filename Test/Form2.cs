@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Test
 {
-    public partial class Form2 : Form
+    public partial class Verwaltung : Form
     {
-        public Form2()
+        public Verwaltung()
         {
             InitializeComponent();
         }
@@ -46,7 +47,6 @@ namespace Test
         {
 
         }
-
         private void label6_Click(object sender, EventArgs e)
         {
 
@@ -82,9 +82,27 @@ namespace Test
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
+            Startseite form3 = new Startseite();
             form3.Show();
             this.Hide();
         }
+
+        private void createButton_Click(object sender, EventArgs e)
+        {
+                try
+                {
+                    DatabaseManager manager = new DatabaseManager();
+                 
+                    string insertQuery = "INSERT INTO users () VALUES (" + input_vorname.Text + "," + input_nachname.Text + "," +
+                    "" + input_postleitzahl.Text + "," + input_city.Text + "," + input_straße + "," +
+                    "" + input_HR.Text + "," + input_telefon.Text + "," + input_email.Text + ")";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler beim Einfügen der Daten: " + ex.Message);
+                }
+            }    
+        }
     }
-}
+
+

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace Test
 {
-    public partial class Form1 : Form
+    public partial class Suche : Form
     {
-        public Form1()
+        public Suche()
         {
             InitializeComponent();
         }
@@ -44,7 +44,7 @@ namespace Test
 
             foreach (string str in items)
             {
-                if (str.ToUpper().Contains(textBox1.Text.ToUpper()))
+                if (str.ToUpper().Contains(input_search.Text.ToUpper()))
                 {
                     listBox1.Items.Add(str);
                 }
@@ -53,7 +53,7 @@ namespace Test
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Verwaltung form2 = new Verwaltung();
             form2.Show();
 
             //load user data
@@ -61,7 +61,7 @@ namespace Test
 
         private void button2_Click(object sender, EventArgs e)
         {
-             new Form2().ShowDialog();
+             new Verwaltung().ShowDialog();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace Test
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
+            Startseite form3 = new Startseite();
             form3.Show();
             this.Hide();
         }

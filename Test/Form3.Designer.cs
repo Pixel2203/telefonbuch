@@ -1,6 +1,6 @@
 ﻿namespace Test
 {
-    partial class Form3
+    partial class Startseite
     {
         /// <summary>
         /// Required designer variable.
@@ -39,9 +39,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(47, 97);
+            this.button1.Location = new System.Drawing.Point(53, 121);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(169, 77);
+            this.button1.Size = new System.Drawing.Size(190, 96);
             this.button1.TabIndex = 0;
             this.button1.Text = "Eintrag erstellen";
             this.button1.UseVisualStyleBackColor = true;
@@ -49,9 +50,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(47, 200);
+            this.button2.Location = new System.Drawing.Point(53, 250);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(169, 77);
+            this.button2.Size = new System.Drawing.Size(190, 96);
             this.button2.TabIndex = 1;
             this.button2.Text = "Eintrag bearbeiten";
             this.button2.UseVisualStyleBackColor = true;
@@ -59,9 +61,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(47, 303);
+            this.button3.Location = new System.Drawing.Point(53, 379);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(169, 77);
+            this.button3.Size = new System.Drawing.Size(190, 96);
             this.button3.TabIndex = 2;
             this.button3.Text = "Eintrag löschen ";
             this.button3.UseVisualStyleBackColor = true;
@@ -69,9 +72,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(47, 406);
+            this.button4.Location = new System.Drawing.Point(53, 508);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(169, 77);
+            this.button4.Size = new System.Drawing.Size(190, 96);
             this.button4.TabIndex = 3;
             this.button4.Text = "Eintrag suchen";
             this.button4.UseVisualStyleBackColor = true;
@@ -79,33 +83,36 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menüToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(900, 33);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // menüToolStripMenuItem
             // 
             this.menüToolStripMenuItem.Name = "menüToolStripMenuItem";
-            this.menüToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
+            this.menüToolStripMenuItem.Size = new System.Drawing.Size(73, 29);
             this.menüToolStripMenuItem.Text = "Menü";
             // 
-            // Form3
+            // Startseite
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 582);
+            this.ClientSize = new System.Drawing.Size(900, 728);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form3";
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "Startseite";
             this.Text = "Form3";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.menuStrip1.ResumeLayout(false);

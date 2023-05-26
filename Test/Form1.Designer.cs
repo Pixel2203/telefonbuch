@@ -1,6 +1,6 @@
 ﻿namespace Test
 {
-    partial class Form1
+    partial class Suche
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -29,50 +29,51 @@
         private void InitializeComponent()
         {
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.input_search = new System.Windows.Forms.TextBox();
+            this.zurück_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(67, 85);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(75, 106);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(895, 420);
+            this.listBox1.Size = new System.Drawing.Size(1006, 524);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // textBox1
+            // input_search
             // 
-            this.textBox1.Location = new System.Drawing.Point(67, 42);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(895, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.input_search.Location = new System.Drawing.Point(75, 52);
+            this.input_search.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.input_search.Name = "input_search";
+            this.input_search.Size = new System.Drawing.Size(1006, 26);
+            this.input_search.TabIndex = 1;
+            this.input_search.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button1
+            // zurück_button
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "zurück";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.zurück_button.Location = new System.Drawing.Point(14, 15);
+            this.zurück_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.zurück_button.Name = "zurück_button";
+            this.zurück_button.Size = new System.Drawing.Size(84, 29);
+            this.zurück_button.TabIndex = 23;
+            this.zurück_button.Text = "zurück";
+            this.zurück_button.UseVisualStyleBackColor = true;
+            this.zurück_button.Click += new System.EventHandler(this.button1_Click_2);
             // 
-            // Form1
+            // Suche
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.Controls.Add(this.zurück_button);
+            this.Controls.Add(this.input_search);
             this.Controls.Add(this.listBox1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "Suche";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -83,8 +84,8 @@
         #endregion
 
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox input_search;
+        private System.Windows.Forms.Button zurück_button;
     }
 }
 

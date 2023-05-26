@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Test
 {
-    public partial class Form3 : Form
+    public partial class Startseite : Form
     {
-        public Form3()
+        public Startseite()
         {
             InitializeComponent();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Verwaltung form2 = new Verwaltung();
             form2.Show();
             this.Hide();
         }
@@ -31,21 +31,21 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Verwaltung form2 = new Verwaltung();
             form2.Show();
             this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Verwaltung form2 = new Verwaltung();
             form2.Show();
             this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            Suche form1 = new Suche();
             form1.Show();
             this.Hide();
         }
