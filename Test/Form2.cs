@@ -59,7 +59,32 @@ namespace Test
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+    
 
+            DatabaseManager manager = new DatabaseManager();
+            bool worked = manager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
+            if (worked)
+            {
+                string sql = "INSERT INTO Users ('vorname','nachname','telefon','adresse','hausnummer','email','oid') VALUES ('Hans','Peter','012121032','Wilde Straße', 'wild@mail.com', '2')";
+                manager.requestFromDatabase(sql);
+            }
+            else
+            {
+                Console.WriteLine("Connection to Database failed!");
+            }
+            
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+            this.Hide();
         }
     }
 }
