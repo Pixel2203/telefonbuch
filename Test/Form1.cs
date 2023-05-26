@@ -69,5 +69,12 @@ namespace Test
         
              
         }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+            this.Hide();
+        }
     }
 }
