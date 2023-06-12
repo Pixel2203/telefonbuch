@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,8 +28,11 @@ namespace Test
         }
 
         List<string> items = new List<string>();
+        DatabaseManager databaseManager = new DatabaseManager();
         private void Form1_Load(object sender, EventArgs e)
         {
+            databaseManager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
+
             items.AddRange(new string[] { "Cat", "Dog", "Carrots", "Brocolli" });
 
             foreach (string str in items)
@@ -40,7 +44,20 @@ namespace Test
        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+            string inputText = textBox1.Text.ToUpper();
             listBox1.Items.Clear();
+
+            string sql = "SELECT * FROM users, orte " +
+                         "WHERE VORNAME = '"+inputText+ "' " +
+                         "OR NACHNAME = '" + inputText + "' " +
+                         "OR STRASSE = '"+inputText+ "' " +
+                         "OR STADT = '"+inputText+ "' " +
+                         "OR TELEFON = '"+inputText+ "' " +
+                         "OR EMAIL = '"+inputText+ "' " +
+                         "OR orte.ID = users.ORTID AND orte.NAME = '"+inputText+"'";
+
+            MySqlDataReader reader = databaseManager.requestFromDatabase(sql);
+            List<string> foundItems = new List<string>();
 
             foreach (string str in items)
             {
@@ -53,6 +70,7 @@ namespace Test
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             Form2 form2 = new Form2();
             form2.Show();
 
