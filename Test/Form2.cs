@@ -18,19 +18,6 @@ namespace Test
         }
         private void Form2_Load(object sender, EventArgs e)
         {
-
-            // Nachricht für das Popup-Fenster
-            string nachricht = "Hallo, das ist eine Testnachricht!";
-
-            // Titel des Popup-Fensters
-            string titel = "Popup-Nachricht";
-
-            // Anzeigen des Popup-Fensters
-            MessageBox.Show(nachricht, titel);
-
-            // Programm beenden
-            Environment.Exit(0);
-
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -70,6 +57,11 @@ namespace Test
         }
         private void createButton_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void createButton_Click_1(object sender, EventArgs e)
+        {
             try
             {
                 DatabaseManager manager = new DatabaseManager();
@@ -84,6 +76,7 @@ namespace Test
                 string email = input_email.Text;
 
                 // Überprüfen Sie, ob alle Eingabefelder nicht leer sind
+                /*
                 if (!string.IsNullOrEmpty(vorname) &&
                     !string.IsNullOrEmpty(nachname) &&
                     !string.IsNullOrEmpty(postleitzahl) &&
@@ -100,6 +93,9 @@ namespace Test
                 {
                     MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 }
+                */
+                DatabaseManager.addUserToDatabase(getDataFromTextboxes());
+                MessageBox.Show("Datensatz erfolgreich erstellt.");
             }
             catch (Exception ex)
             {

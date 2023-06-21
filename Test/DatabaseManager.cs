@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -61,15 +62,15 @@ class DatabaseManager
 
     public static void addUserToDatabase(UserEntry newUser) {
 
-        string getOrtIdSql = "SELECT ortId FROM orte WHERE name LIKE '" + newUser.OrtName + "' AND plz = '" + newUser.Plz + "'" ;
+       
+        int ortId = 0;
+        string getOrtIdSql = "SELECT ortId FROM orte WHERE name LIKE '" + newUser.OrtName + "' AND plz = '" + newUser.Plz + "'";
         MySqlCommand cmd = connection.CreateCommand();
         cmd.CommandText = getOrtIdSql;
-        MySqlDataReader ortidReader= cmd.ExecuteReader();
-        int ortId;
-
-        ortidReader.Read();
+        MySqlDataReader ortidReader = cmd.ExecuteReader();
         try
         {
+            ortidReader.Read();
             ortId = ortidReader.GetInt32("ortId");
         }
         catch (Exception ex)
@@ -78,21 +79,20 @@ class DatabaseManager
             // City not found --> Create New City entry
             string addCitySql = "INSERT INTO orte (name,plz) VALUES ('" + newUser.OrtName+ "','" + newUser.Plz+"')";
 
-         
+            
             MySqlCommand addCityCMD = connection.CreateCommand();
             addCityCMD.CommandText = addCitySql;
-            addCityCMD.ExecuteReader();
+            addCityCMD.ExecuteReader().Close();
 
-          
-            ortidReader = cmd.ExecuteReader();
-            ortidReader.Read();
-           
-            
+            MySqlCommand getOrtId = connection.CreateCommand();
+            getOrtId.CommandText = getOrtIdSql;
+            MySqlDataReader oReader = getOrtId.ExecuteReader();
+            oReader.Read();
+            ortId = oReader.GetInt32("ortId");
+            oReader.Close();
 
         }
-        ortId = ortidReader.GetInt32("ortId");
         newUser.OrtID = ortId.ToString();
-        ortidReader.Close();
         string insertSQL = "INSERT INTO users (vorname,nachname,strasse,hausnummer,telefon,email,ortId) VALUES " +
             "('"
             + newUser.Vorname + "','"
