@@ -17,64 +17,6 @@ namespace Test
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-    
-
-            DatabaseManager manager = new DatabaseManager();
-            bool worked = manager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
-            if (worked)
-            {
-                string sql = "INSERT INTO Users ('vorname','nachname','telefon','adresse','hausnummer','email','oid') VALUES ('Hans','Peter','012121032','Wilde Straße', 'wild@mail.com', '2')";
-                manager.requestFromDatabase(sql);
-            }
-            else
-            {
-                Console.WriteLine("Connection to Database failed!");
-            }
-            
-        }
-
         private void label8_Click(object sender, EventArgs e)
         {
 
