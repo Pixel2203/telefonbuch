@@ -31,7 +31,7 @@ namespace Test
         DatabaseManager databaseManager = new DatabaseManager();
         private void Form1_Load(object sender, EventArgs e)
         {
-            databaseManager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
+          
 
             items.AddRange(new string[] { "Cat", "Dog", "Carrots", "Brocolli" });
 
@@ -56,7 +56,7 @@ namespace Test
                          "OR EMAIL LIKE '" + inputText+ "' " +
                          "OR orte.ID LIKE users.ORTID AND orte.NAME LIKE '" + inputText+"'";
 
-            MySqlDataReader reader = databaseManager.requestFromDatabase(sql);
+            //MySqlDataReader reader = databaseManager.requestFromDatabase(sql);
             List<string> foundItems = new List<string>();
 
             foreach (string str in items)

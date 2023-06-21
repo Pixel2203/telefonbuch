@@ -7,21 +7,17 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-
+using Test;
 class DatabaseManager
 {
-    private MySqlConnection connection;
-    public DatabaseManager()
-    {
-
-    }
-    public bool EstablishConnection(string serverIP, string uID, string password, string database)
+    private static MySqlConnection connection;
+    public static bool EstablishConnection(string serverIP, string uID, string password, string database)
     {
         try
         {
-            this.connection = new MySqlConnection();
-            this.connection.ConnectionString = "server=" + serverIP + ";uid=" + uID + ";pwd=" + password + ";database=" + database;
-            this.connection.Open();
+            connection = new MySqlConnection();
+            connection.ConnectionString = "server=" + serverIP + ";uid=" + uID + ";pwd=" + password + ";database=" + database;
+            connection.Open();
             return true;
         }
         catch (MySqlException e)
@@ -31,14 +27,14 @@ class DatabaseManager
         }
 
     }
-    public bool DisconnectFromDatabase()
+    public static bool DisconnectFromDatabase()
     {
-        this.connection.Close();
+        connection.Close();
         return true;
     }
-    public List<UserEntry> requestFromDatabase(string sql)
+    public static List<UserEntry> getUsersFromDatabase(string sql)
     {
-        MySqlCommand cmd = this.connection.CreateCommand();
+        MySqlCommand cmd = connection.CreateCommand();
         cmd.CommandText = sql;
         MySqlDataReader reader = cmd.ExecuteReader();
         List<UserEntry> list = new List<UserEntry>();
@@ -51,43 +47,65 @@ class DatabaseManager
             string telefon = reader.GetString("vorname");
             string email = reader.GetString("vorname") ?? "-";
             string ortid = reader.GetString("vorname") ?? "-";
-            list.Add(new UserEntry(vorname,nachname,strasse,hausnummer,telefon,email,ortid));
+            string ortname = "";
+            string plz = "";
+            if(ortid != "-"){
+                ortname = reader.GetString("name") ?? "-";
+                plz = reader.GetInt32("plz").ToString() ?? "-";
+            }
+            list.Add(new UserEntry(vorname,nachname,strasse,hausnummer,telefon,email,ortid,ortname,plz));
         }
         reader.Close();
         return list;
     }
-}
-class UserEntry
-{
-    public string Vorname = "";
-    public string Nachname = "";
-    public string Strasse = "";
-    public string Hausnummer = "";
-    public string Telefon = "";
-    public string Email = "";
-    public string OrtID = "";
-    public UserEntry(string Vorname, string Nachname, string Strasse, string Hausnummer, string Telefon, string Email, string Ordid)
-    {
-        this.Vorname = Vorname;
-        this.Nachname = Nachname;
-        this.Strasse = Strasse;
-        this.Hausnummer = Hausnummer;
-        this.Telefon = Telefon;
-        this.Email = Email;
-        this.OrtID = Ordid;
-    }
-}
-class SampleData
-{
-    public static List<UserEntry> userEntries = new List<UserEntry>();
-    public SampleData()
-    {
-        userEntries.Add(new UserEntry("Max", "Mustermann", "Musterstraße", "1", "39132719", "max-mustermann@email.com", "-"));
-        userEntries.Add(new UserEntry("Maria", "Musterfrau", "Beispielweg", "10", "98765432", "maria.musterfrau@example.com", "-"));
-        userEntries.Add(new UserEntry("John", "Doe", "Testgasse", "5", "5551234", "john.doe@example.com", "-"));
-        userEntries.Add(new UserEntry("Sarah", "Schmidt", "Hauptstraße", "20", "12345678", "sarah.schmidt@example.com", "-"));
-        userEntries.Add(new UserEntry("Thomas", "Müller", "Parkweg", "3A", "98765432", "thomas.mueller@example.com", "-"));
-        userEntries.Add(new UserEntry("Laura", "Hansen", "Berggasse", "8", "5557890", "laura.hansen@example.com", "-"));
+
+    public static void addUserToDatabase(UserEntry newUser) {
+
+        string getOrtIdSql = "SELECT ortId FROM orte WHERE name LIKE '" + newUser.OrtName + "' AND plz = '" + newUser.Plz + "'" ;
+        MySqlCommand cmd = connection.CreateCommand();
+        cmd.CommandText = getOrtIdSql;
+        MySqlDataReader ortidReader= cmd.ExecuteReader();
+        int ortId;
+
+        ortidReader.Read();
+        try
+        {
+            ortId = ortidReader.GetInt32("ortId");
+        }
+        catch (Exception ex)
+        {
+            ortidReader.Close();
+            // City not found --> Create New City entry
+            string addCitySql = "INSERT INTO orte (name,plz) VALUES ('" + newUser.OrtName+ "','" + newUser.Plz+"')";
+
+         
+            MySqlCommand addCityCMD = connection.CreateCommand();
+            addCityCMD.CommandText = addCitySql;
+            addCityCMD.ExecuteReader();
+
+          
+            ortidReader = cmd.ExecuteReader();
+            ortidReader.Read();
+           
+            
+
+        }
+        ortId = ortidReader.GetInt32("ortId");
+        newUser.OrtID = ortId.ToString();
+        ortidReader.Close();
+        string insertSQL = "INSERT INTO users (vorname,nachname,strasse,hausnummer,telefon,email,ortId) VALUES " +
+            "('"
+            + newUser.Vorname + "','"
+            + newUser.Nachname + "','"
+            + newUser.Strasse + "','"
+            + newUser.Hausnummer + "','"
+            + newUser.Telefon + "','"
+            + newUser.Email + "','"
+            + newUser.OrtID + "'"
+            + ")";
+        MySqlCommand insertCommand = connection.CreateCommand();
+        insertCommand.CommandText = insertSQL;
+        insertCommand.ExecuteReader();
 
     }
 }
