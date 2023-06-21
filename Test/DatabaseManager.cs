@@ -41,20 +41,22 @@ class DatabaseManager
         List<UserEntry> list = new List<UserEntry>();
         while (reader.Read())
         {
+            string userId = reader.GetString("userId");
             string vorname = reader.GetString("vorname");
             string nachname = reader.GetString("nachname");
             string strasse = reader.GetString("strasse");
             string hausnummer = reader.GetInt32("hausnummer").ToString() ?? "-";
-            string telefon = reader.GetString("vorname");
-            string email = reader.GetString("vorname") ?? "-";
-            string ortid = reader.GetString("vorname") ?? "-";
+            string telefon = reader.GetString("telefon");
+            string email = reader.GetString("email") ?? "-";
+            string ortid = "-";
+            try
+            {
+                ortid = reader.GetString("ortId");
+            }catch (Exception e) { }
             string ortname = "";
             string plz = "";
-            if(ortid != "-"){
-                ortname = reader.GetString("name") ?? "-";
-                plz = reader.GetInt32("plz").ToString() ?? "-";
-            }
-            list.Add(new UserEntry(vorname,nachname,strasse,hausnummer,telefon,email,ortid,ortname,plz));
+
+            list.Add(new UserEntry(userId,vorname,nachname,strasse,hausnummer,telefon,email,ortid,ortname,plz));
         }
         reader.Close();
         return list;
@@ -107,5 +109,22 @@ class DatabaseManager
         insertCommand.CommandText = insertSQL;
         insertCommand.ExecuteReader();
 
+    }
+    public static UserEntry getCityData(UserEntry ent)
+    {
+        MySqlCommand addCityCMD = connection.CreateCommand();
+        addCityCMD.CommandText = "SELECT name,plz FROM orte,users WHERE users.ortId = orte.ortId AND users.userId =" + ent.UserID + " AND users.ortId IS NOT NULL";
+        MySqlDataReader reader = addCityCMD.ExecuteReader();
+        reader.Read();
+        try
+        {
+            ent.OrtName = reader.GetString("name");
+            ent.Plz = reader.GetString("plz");
+        }
+        catch (Exception e)
+        {
+        }
+        reader.Close();
+        return ent;
     }
 }

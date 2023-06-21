@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,7 @@ namespace Test
         private void Form1_Load(object sender, EventArgs e)
         {
           
-
+           
             items.AddRange(new string[] { "Cat", "Dog", "Carrots", "Brocolli" });
             foreach (string str in items)
             {
@@ -45,40 +46,31 @@ namespace Test
         {
             string inputText = textBox1.Text.ToUpper();
             listBox1.Items.Clear();
-
-            string sql = "SELECT * FROM users, orte " +
-                         "WHERE VORNAME LIKE '"+inputText+ "' " +
-                         "OR NACHNAME LIKE '" + inputText + "' " +
-                         "OR STRASSE LIKE '" + inputText+ "' " +
-                         "OR STADT LIKE '" + inputText+ "' " +
-                         "OR TELEFON LIKE '" + inputText+ "' " +
-                         "OR EMAIL LIKE '" + inputText+ "' " +
-                         "OR orte.ID LIKE users.ORTID AND orte.NAME LIKE '" + inputText+"'";
-
+            listBox1.DisplayMember = "display";
+            listBox1.ValueMember = "userId";
+            string sql = "SELECT DISTINCT * FROM users " +
+                         "WHERE vorname LIKE '" + inputText + "%' " +
+                         "OR nachname LIKE '" + inputText + "%' " +
+                         "OR strasse LIKE '" + inputText + "%' " +
+                         "OR telefon LIKE '" + inputText + "%' " +
+                         "OR email LIKE '" + inputText + "%' ";
+                            
             List<UserEntry> reader = DatabaseManager.getUsersFromDatabase(sql);
             List<string> foundItems = new List<string>();
-
-            foreach (string str in items)
+            foreach(UserEntry entry in reader)
             {
-                if (str.ToUpper().Contains(textBox1.Text.ToUpper()))
-                {
-                    listBox1.Items.Add(str);
-                }
+            
+                listBox1.Items.Add(entry) ;
             }
         }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            Form2 form2 = new Form2();
+            UserEntry ent = (UserEntry)listBox1.SelectedItem;
+            Debug.WriteLine(ent.Vorname);
+            Form2 form2 = new Form2("rw" , ent);
             form2.Show();
 
             //load user data
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-             new Form2().ShowDialog();
         }
 
         private void button2_Click_1(object sender, EventArgs e)

@@ -12,9 +12,16 @@ namespace Test
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        private string args = "";
+        public Form2(string arg, UserEntry ent)
         {
             InitializeComponent();
+            if(arg == "rw")
+            {
+                ent = DatabaseManager.getCityData(ent);
+                insertDataIntoTextboxes(ent);
+                args = arg;
+            }
         }
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -27,9 +34,14 @@ namespace Test
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            if(args == "rw")
+            {
+                this.Close();
+                return;
+            }
             Form3 form3 = new Form3();
             form3.Show();
-            this.Hide();
+            this.Close();
         }
         private void insertDataIntoTextboxes(UserEntry entry) {
             this.input_city.Text = entry.OrtName;
@@ -43,6 +55,7 @@ namespace Test
         }
         private UserEntry getDataFromTextboxes() {
             return new UserEntry(
+                "",
                 this.input_vorname.Text,
                 this.input_nachname.Text,
                 this.input_straße.Text,

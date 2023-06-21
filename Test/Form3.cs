@@ -18,12 +18,6 @@ namespace Test
             DatabaseManager.EstablishConnection("127.0.0.1", "root", "Kaiser.331", "telefonbuch");
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Form2 form2 = new Form2();
-            form2.Show();
-            this.Hide();
-        }
 
         private void Form3_Load(object sender, EventArgs e)
         {
@@ -32,17 +26,11 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
             form2.Show();
             this.Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form2 form2 = new Form2();
-            form2.Show();
-            this.Hide();
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
