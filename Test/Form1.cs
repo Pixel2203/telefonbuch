@@ -48,13 +48,13 @@ namespace Test
             listBox1.Items.Clear();
 
             string sql = "SELECT * FROM users, orte " +
-                         "WHERE VORNAME = '"+inputText+ "' " +
-                         "OR NACHNAME = '" + inputText + "' " +
-                         "OR STRASSE = '"+inputText+ "' " +
-                         "OR STADT = '"+inputText+ "' " +
-                         "OR TELEFON = '"+inputText+ "' " +
-                         "OR EMAIL = '"+inputText+ "' " +
-                         "OR orte.ID = users.ORTID AND orte.NAME = '"+inputText+"'";
+                         "WHERE VORNAME LIKE '"+inputText+ "' " +
+                         "OR NACHNAME LIKE '" + inputText + "' " +
+                         "OR STRASSE LIKE '" + inputText+ "' " +
+                         "OR STADT LIKE '" + inputText+ "' " +
+                         "OR TELEFON LIKE '" + inputText+ "' " +
+                         "OR EMAIL LIKE '" + inputText+ "' " +
+                         "OR orte.ID LIKE users.ORTID AND orte.NAME LIKE '" + inputText+"'";
 
             MySqlDataReader reader = databaseManager.requestFromDatabase(sql);
             List<string> foundItems = new List<string>();
