@@ -34,7 +34,6 @@ namespace Test
           
 
             items.AddRange(new string[] { "Cat", "Dog", "Carrots", "Brocolli" });
-
             foreach (string str in items)
             {
                 listBox1.Items.Add(str);
@@ -56,7 +55,7 @@ namespace Test
                          "OR EMAIL LIKE '" + inputText+ "' " +
                          "OR orte.ID LIKE users.ORTID AND orte.NAME LIKE '" + inputText+"'";
 
-            //MySqlDataReader reader = databaseManager.requestFromDatabase(sql);
+            List<UserEntry> reader = DatabaseManager.getUsersFromDatabase(sql);
             List<string> foundItems = new List<string>();
 
             foreach (string str in items)
