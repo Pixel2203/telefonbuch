@@ -46,7 +46,20 @@ namespace Test
         private void Form2_Load(object sender, EventArgs e)
         {
 
+            // Nachricht für das Popup-Fenster
+            string nachricht = "Hallo, das ist eine Testnachricht!";
+
+            // Titel des Popup-Fensters
+            string titel = "Popup-Nachricht";
+
+            // Anzeigen des Popup-Fensters
+            MessageBox.Show(nachricht, titel);
+
+            // Programm beenden
+            Environment.Exit(0);
+
         }
+
         private void label6_Click(object sender, EventArgs e)
         {
 
@@ -59,7 +72,7 @@ namespace Test
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-    
+
 
             DatabaseManager manager = new DatabaseManager();
             bool worked = manager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
@@ -72,7 +85,7 @@ namespace Test
             {
                 Console.WriteLine("Connection to Database failed!");
             }
-            
+
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -89,20 +102,49 @@ namespace Test
 
         private void createButton_Click(object sender, EventArgs e)
         {
-                try
+            try
+            {
+                DatabaseManager manager = new DatabaseManager();
+
+                string vorname = input_vorname.Text;
+                string nachname = input_nachname.Text;
+                string postleitzahl = input_postleitzahl.Text;
+                string city = input_city.Text;
+                string straße = input_straße.Text;
+                string HR = input_HR.Text;
+                string telefon = input_telefon.Text;
+                string email = input_email.Text;
+
+                // Überprüfen Sie, ob alle Eingabefelder nicht leer sind
+                if (!string.IsNullOrEmpty(vorname) &&
+                    !string.IsNullOrEmpty(nachname) &&
+                    !string.IsNullOrEmpty(postleitzahl) &&
+                    !string.IsNullOrEmpty(city) &&
+                    !string.IsNullOrEmpty(straße) &&
+                    !string.IsNullOrEmpty(HR) &&
+                    !string.IsNullOrEmpty(telefon) &&
+                    !string.IsNullOrEmpty(email))
                 {
-                    DatabaseManager manager = new DatabaseManager();
-                 
-                    string insertQuery = "INSERT INTO users () VALUES (" + input_vorname.Text + "," + input_nachname.Text + "," +
-                    "" + input_postleitzahl.Text + "," + input_city.Text + "," + input_straße + "," +
-                    "" + input_HR.Text + "," + input_telefon.Text + "," + input_email.Text + ")";
+                    // Hier können Sie den Datensatz erstellen
+                    string insertQuery = "INSERT INTO users (Vorname, Nachname, Postleitzahl, City, Straße, HR, Telefon, Email) " +
+                        "VALUES ('" + vorname + "', '" + nachname + "', '" + postleitzahl + "', '" + city + "', '" +
+                        straße + "', '" + HR + "', '" + telefon + "', '" + email + "')";
+                    DatabaseManager.insertIntoDatabase;
+
+                    MessageBox.Show("Datensatz erfolgreich erstellt.");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Fehler beim Einfügen der Daten: " + ex.Message);
+                    MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 }
-            }    
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fehler beim Einfügen der Daten: " + ex.Message);
+            }
         }
     }
+}
+            
 
 
