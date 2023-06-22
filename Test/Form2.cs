@@ -11,16 +11,20 @@ using System.Windows.Forms;
 
 namespace Test
 {
-    public partial class Form2 : Form
+    public partial class Form2 : System.Windows.Forms.Form
     {
         private string args = "";
         private string userId = "";
         public Form2(string arg, UserEntry ent)
         {
+            
             InitializeComponent();
+            
             args = arg;
-            if (arg == "rw")
+            if (arg == "rw") 
             {
+
+                this.Text = ent.Vorname + " " + ent.Nachname;
                 createButton.Hide();
                 // Add City Data to User
                 ent = DatabaseManager.getCityData(ent);
@@ -29,7 +33,9 @@ namespace Test
             
             }else if(arg=="w")
             {
+                this.Text = "Benutzer Anlegen";
                 updateButton.Hide();
+                button2.Hide();
             }
         }
         private void Form2_Load(object sender, EventArgs e)
@@ -157,8 +163,6 @@ namespace Test
                 string.IsNullOrEmpty(data.Email) ||
                 !( ( string.IsNullOrEmpty(data.Plz) && string.IsNullOrEmpty(data.OrtName) )  || ( string.Empty != data.Plz && string.Empty != data.OrtName)))
             {
-                // ( !plz && !ortName  ) || (plz && ortName) 
-                // 778  ""
                 MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 return false;
             }
@@ -183,6 +187,18 @@ namespace Test
 
             }
             return false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Soll dieser Benutzer entfernt werden?", "Benutzer löschen", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
+            {
+                DatabaseManager.deleteUser(this.userId);
+                MessageBox.Show("Eintrag wurde gelöscht");
+                this.Close();
+            }
+           
         }
     }
 

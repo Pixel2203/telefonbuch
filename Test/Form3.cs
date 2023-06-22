@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Test
 {
-    public partial class Form3 : Form
+    public partial class Form3 : System.Windows.Forms.Form
     {
         public Form3()
         {

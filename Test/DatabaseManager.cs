@@ -62,6 +62,13 @@ class DatabaseManager
         reader.Close();
         return list;
     }
+    public static void deleteUser(string userId)
+    {
+        string sql = "DELETE FROM users WHERE userId= '" + userId + "'";
+        MySqlCommand cmd = connection.CreateCommand();
+        cmd.CommandText = sql;
+        cmd.ExecuteReader().Close();
+    }
 
     public static void addUserToDatabase(UserEntry newUser) {
         
