@@ -89,7 +89,7 @@ namespace Test
                 string email = input_email.Text;
 
                 // Überprüfen Sie, ob alle Eingabefelder nicht leer sind
-                /*
+                
                 if (!string.IsNullOrEmpty(vorname) &&
                     !string.IsNullOrEmpty(nachname) &&
                     !string.IsNullOrEmpty(postleitzahl) &&
@@ -99,16 +99,22 @@ namespace Test
                     !string.IsNullOrEmpty(telefon) &&
                     !string.IsNullOrEmpty(email))
                 {
-                    DatabaseManager.addUserToDatabase(getDataFromTextboxes());
-                    MessageBox.Show("Datensatz erfolgreich erstellt.");
+                    if (int.TryParse(postleitzahl,out _) &&
+                        int.TryParse(HR,out _) &&
+                        int.TryParse(telefon,out _))
+                    {
+                        DatabaseManager.addUserToDatabase(getDataFromTextboxes());
+                        MessageBox.Show("Datensatz erfolgreich erstellt.");
+                        return;
+                    }
+                    MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!");
+                    
                 }
                 else
                 {
                     MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 }
-                */
-                DatabaseManager.addUserToDatabase(getDataFromTextboxes());
-                MessageBox.Show("Datensatz erfolgreich erstellt.");
+               
             }
             catch (Exception ex)
             {

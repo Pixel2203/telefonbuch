@@ -32,16 +32,12 @@ namespace Test
         DatabaseManager databaseManager = new DatabaseManager();
         private void Form1_Load(object sender, EventArgs e)
         {
-          
-           
-            items.AddRange(new string[] { "Cat", "Dog", "Carrots", "Brocolli" });
-            foreach (string str in items)
+            List<UserEntry> entry = DatabaseManager.getUsersFromDatabase("SELECT * FROM users");
+            foreach(UserEntry ent in entry)
             {
-                listBox1.Items.Add(str);
-
+                listBox1.Items.Add(ent);
             }
         }
-       
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             string inputText = textBox1.Text.ToUpper();
