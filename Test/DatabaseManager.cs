@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Test;
@@ -63,38 +64,39 @@ class DatabaseManager
     }
 
     public static void addUserToDatabase(UserEntry newUser) {
+        
+        if(newUser.OrtName != null && newUser.OrtName != string.Empty && newUser.OrtName != "-")
+        {
+            int ortId;
+            try
+            {
+                Ort ort = getOrtByAttributes(newUser.OrtName, newUser.Plz); 
+                if(ort == null)
+                {
+                    createOrt(newUser.OrtName, newUser.Plz);
+                    ortId = int.Parse(getOrtByAttributes(newUser.OrtName, newUser.Plz).ortid);
 
+                }
+                else
+                {
+                    ortId = int.Parse(ort.ortid);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                // City not found --> Create New City entry
+
+                createOrt(newUser.OrtName, newUser.Plz);
+
+
+                ortId = int.Parse(getOrtByAttributes(newUser.OrtName, newUser.Plz).ortid);
+
+            }
+            newUser.OrtID = ortId.ToString();
+        }
        
-        int ortId = 0;
-        string getOrtIdSql = "SELECT ortId FROM orte WHERE name LIKE '" + newUser.OrtName + "' AND plz = '" + newUser.Plz + "'";
-        MySqlCommand cmd = connection.CreateCommand();
-        cmd.CommandText = getOrtIdSql;
-        MySqlDataReader ortidReader = cmd.ExecuteReader();
-        try
-        {
-            ortidReader.Read();
-            ortId = ortidReader.GetInt32("ortId");
-        }
-        catch (Exception ex)
-        {
-            ortidReader.Close();
-            // City not found --> Create New City entry
-            string addCitySql = "INSERT INTO orte (name,plz) VALUES ('" + newUser.OrtName+ "','" + newUser.Plz+"')";
-
-            
-            MySqlCommand addCityCMD = connection.CreateCommand();
-            addCityCMD.CommandText = addCitySql;
-            addCityCMD.ExecuteReader().Close();
-
-            MySqlCommand getOrtId = connection.CreateCommand();
-            getOrtId.CommandText = getOrtIdSql;
-            MySqlDataReader oReader = getOrtId.ExecuteReader();
-            oReader.Read();
-            ortId = oReader.GetInt32("ortId");
-            oReader.Close();
-
-        }
-        newUser.OrtID = ortId.ToString();
+        
         string insertSQL = "INSERT INTO users (vorname,nachname,strasse,hausnummer,telefon,email,ortId) VALUES " +
             "('"
             + newUser.Vorname + "','"
@@ -126,5 +128,92 @@ class DatabaseManager
         }
         reader.Close();
         return ent;
+    }
+    public static void updateUser(UserEntry user)
+    {
+        Ort ort = getOrtByAttributes(user.OrtName, user.Plz);
+        if(ort != null)
+        {
+            user.OrtID = ort.ortid;
+        }else if(user.OrtName != null && user.OrtName != string.Empty && user.OrtName != "-")
+        {
+            createOrt(user.OrtName, user.Plz);
+        }
+        string sql = "UPDATE users SET vorname='"
+            + user.Vorname + "' , nachname='"
+            + user.Nachname + "' , strasse='"
+            + user.Strasse + "' , telefon='"
+            + user.Telefon + "' , email='"
+            + user.Email + "' , hausnummer='"
+            + user.Hausnummer + "' , ortId='"
+            + user.OrtID + "' WHERE user.userId=" + user.UserID;
+
+
+        MySqlCommand update = connection.CreateCommand();
+        update.CommandText = sql;
+        update.ExecuteReader().Close();
+
+
+    }
+    private static void createOrt(string ortname, string plz)
+    {
+        string addCitySql = "INSERT INTO orte (name,plz) VALUES ('" + ortname  + "','" +plz + "')";
+
+
+        MySqlCommand addCityCMD = connection.CreateCommand();
+        addCityCMD.CommandText = addCitySql;
+        addCityCMD.ExecuteReader().Close();
+    }
+    private static Ort getOrtById(string ortId)
+    {
+        string sql = "SELECT * FROM orte WHERE ortId=" + ortId;
+        MySqlCommand ort = connection.CreateCommand();
+        ort.CommandText = sql;
+        MySqlDataReader r = ort.ExecuteReader();
+        try
+        {
+            string name = r.GetString("name");
+            string plz = r.GetInt32("plz").ToString();
+            string ortid = r.GetInt32("ortId").ToString();
+            r.Close();
+            return new Ort(ortid,name,plz);  
+        }
+        catch (Exception)
+        {
+            r.Close();
+            return null;
+        }
+    }
+    private static Ort getOrtByAttributes(string name, string plz)
+    {
+        string sql = "SELECT * FROM orte WHERE name='" + name + "' AND plz ='" + plz + "'";
+        MySqlCommand ort = connection.CreateCommand();
+        ort.CommandText = sql;
+        MySqlDataReader r = ort.ExecuteReader();
+        r.Read();
+        
+        try
+        {
+            string ortId = r.GetString("ortId");
+            r.Close();
+            return new Ort(ortId, name, plz);
+        }
+        catch (Exception)
+        {
+            r.Close();
+            return null;
+        }
+    }
+    class Ort
+    {
+        public string ortid;
+        public string name;
+        public string plz;
+        public Ort(string ortid, string name, string plz)
+        {
+            this.ortid = ortid;
+            this.name = name;
+            this.plz = plz;
+        }
     }
 }

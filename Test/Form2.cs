@@ -16,11 +16,16 @@ namespace Test
         public Form2(string arg, UserEntry ent)
         {
             InitializeComponent();
-            if(arg == "rw")
+            args = arg;
+            if (arg == "rw")
             {
+                createButton.Hide();
                 ent = DatabaseManager.getCityData(ent);
                 insertDataIntoTextboxes(ent);
-                args = arg;
+            
+            }else if(arg=="w")
+            {
+                updateButton.Hide();
             }
         }
         private void Form2_Load(object sender, EventArgs e)
@@ -78,48 +83,58 @@ namespace Test
             try
             {
                 DatabaseManager manager = new DatabaseManager();
-
-                string vorname = input_vorname.Text;
-                string nachname = input_nachname.Text;
-                string postleitzahl = input_postleitzahl.Text;
-                string city = input_city.Text;
-                string straße = input_straße.Text;
-                string HR = input_HR.Text;
-                string telefon = input_telefon.Text;
-                string email = input_email.Text;
+                UserEntry data = getDataFromTextboxes();
 
                 // Überprüfen Sie, ob alle Eingabefelder nicht leer sind
                 
-                if (!string.IsNullOrEmpty(vorname) &&
-                    !string.IsNullOrEmpty(nachname) &&
-                    !string.IsNullOrEmpty(postleitzahl) &&
-                    !string.IsNullOrEmpty(city) &&
-                    !string.IsNullOrEmpty(straße) &&
-                    !string.IsNullOrEmpty(HR) &&
-                    !string.IsNullOrEmpty(telefon) &&
-                    !string.IsNullOrEmpty(email))
+                if (
+                    string.IsNullOrEmpty(data.Vorname) &&
+                    string.IsNullOrEmpty(data.Nachname) &&
+                    string.IsNullOrEmpty(data.Strasse) &&
+                    string.IsNullOrEmpty(data.Hausnummer) &&
+                    string.IsNullOrEmpty(data.Telefon) &&
+                    string.IsNullOrEmpty(data.Email) &&
+                    (string.IsNullOrEmpty(data.Plz) && string.IsNullOrEmpty(data.OrtName)  || string.Empty == data.Plz && string.Empty == data.OrtName  ) )
                 {
-                    if (int.TryParse(postleitzahl,out _) &&
-                        int.TryParse(HR,out _) &&
-                        int.TryParse(telefon,out _))
+                    MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
+                    return;
+                }
+                if(data.Plz != string.Empty)
+                {
+                    if (int.TryParse(data.Plz, out _) &&
+                    int.TryParse(data.Hausnummer, out _) &&
+                    int.TryParse(data.Telefon, out _))
                     {
                         DatabaseManager.addUserToDatabase(getDataFromTextboxes());
                         MessageBox.Show("Datensatz erfolgreich erstellt.");
                         return;
                     }
-                    MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!");
-                    
+                   
+
                 }
                 else
                 {
-                    MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
+                    if(int.TryParse(data.Hausnummer, out _))
+                    {
+                        DatabaseManager.addUserToDatabase(getDataFromTextboxes());
+                        MessageBox.Show("Datensatz erfolgreich erstellt.");
+                        return;
+                    }
+
                 }
-               
+                MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!");
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Fehler beim Einfügen der Daten: " + ex.Message);
             }
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+
+            DatabaseManager.updateUser(getDataFromTextboxes());
         }
     }
 
