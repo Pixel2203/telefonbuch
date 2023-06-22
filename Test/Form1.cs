@@ -42,9 +42,7 @@ namespace Test
         {
             string inputText = textBox1.Text.ToUpper();
             listBox1.Items.Clear();
-            listBox1.DisplayMember = "display";
-            listBox1.ValueMember = "userId";
-            string sql = "SELECT DISTINCT * FROM users " +
+            string sql = "SELECT * FROM users " +
                          "WHERE vorname LIKE '" + inputText + "%' " +
                          "OR nachname LIKE '" + inputText + "%' " +
                          "OR strasse LIKE '" + inputText + "%' " +
@@ -62,7 +60,7 @@ namespace Test
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             UserEntry ent = (UserEntry)listBox1.SelectedItem;
-            Debug.WriteLine(ent.Vorname);
+            Debug.WriteLine("MEINE COOLE ID: " + ent.UserID);
             Form2 form2 = new Form2("rw" , ent);
             form2.Show();
 

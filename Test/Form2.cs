@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Test
     public partial class Form2 : Form
     {
         private string args = "";
+        private string userId = "";
         public Form2(string arg, UserEntry ent)
         {
             InitializeComponent();
@@ -20,7 +22,9 @@ namespace Test
             if (arg == "rw")
             {
                 createButton.Hide();
+                // Add City Data to User
                 ent = DatabaseManager.getCityData(ent);
+                this.userId = ent.UserID;
                 insertDataIntoTextboxes(ent);
             
             }else if(arg=="w")
@@ -82,7 +86,6 @@ namespace Test
         {
             try
             {
-                DatabaseManager manager = new DatabaseManager();
                 UserEntry data = getDataFromTextboxes();
 
                 // Überprüfen Sie, ob alle Eingabefelder nicht leer sind
@@ -133,8 +136,53 @@ namespace Test
 
         private void updateButton_Click(object sender, EventArgs e)
         {
+            UserEntry data = getDataFromTextboxes();
+            if (checkData(data))
+            {
+                data.UserID = this.userId;
+                DatabaseManager.updateUser(data);
+                MessageBox.Show("Eintrag erfolgreich aktualisiert!");
+            }
 
-            DatabaseManager.updateUser(getDataFromTextboxes());
+            
+        }
+        private bool checkData(UserEntry data)
+        {
+            if (
+                string.IsNullOrEmpty(data.Vorname) ||
+                string.IsNullOrEmpty(data.Nachname) ||
+                string.IsNullOrEmpty(data.Strasse) ||
+                string.IsNullOrEmpty(data.Hausnummer) ||
+                string.IsNullOrEmpty(data.Telefon) ||
+                string.IsNullOrEmpty(data.Email) ||
+                !( ( string.IsNullOrEmpty(data.Plz) && string.IsNullOrEmpty(data.OrtName) )  || ( string.Empty != data.Plz && string.Empty != data.OrtName)))
+            {
+                // ( !plz && !ortName  ) || (plz && ortName) 
+                // 778  ""
+                MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
+                return false;
+            }
+
+            if (data.Plz != string.Empty)
+            {
+                if (int.TryParse(data.Plz, out _) &&
+                int.TryParse(data.Hausnummer, out _) &&
+                int.TryParse(data.Telefon, out _))
+                {
+                    return true;
+                }
+
+
+            }
+            else
+            {
+                if (int.TryParse(data.Hausnummer, out _))
+                {
+                    return true;
+                }
+
+            }
+            return false;
         }
     }
 

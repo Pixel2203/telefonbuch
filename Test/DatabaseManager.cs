@@ -132,23 +132,47 @@ class DatabaseManager
     public static void updateUser(UserEntry user)
     {
         Ort ort = getOrtByAttributes(user.OrtName, user.Plz);
-        if(ort != null)
+        string sql = "";
+        if (ort != null)
         {
             user.OrtID = ort.ortid;
-        }else if(user.OrtName != null && user.OrtName != string.Empty && user.OrtName != "-")
+            sql = "UPDATE users SET vorname='"
+           + user.Vorname + "' , nachname='"
+           + user.Nachname + "' , strasse='"
+           + user.Strasse + "' , telefon='"
+           + user.Telefon + "' , email='"
+           + user.Email + "' , hausnummer='"
+           + user.Hausnummer + "' , ortId='"
+           + user.OrtID + "' WHERE userId=" + user.UserID;
+        }
+        else if(user.OrtName != null && user.OrtName != string.Empty && user.OrtName != "-")
         {
             createOrt(user.OrtName, user.Plz);
+            user.OrtID = getOrtByAttributes(user.OrtName, user.Plz).ortid;
+            sql = "UPDATE users SET vorname='"
+           + user.Vorname + "' , nachname='"
+           + user.Nachname + "' , strasse='"
+           + user.Strasse + "' , telefon='"
+           + user.Telefon + "' , email='"
+           + user.Email + "' , hausnummer='"
+           + user.Hausnummer + "' , ortId='"
+           + user.OrtID + "' WHERE userId=" + user.UserID;
         }
-        string sql = "UPDATE users SET vorname='"
-            + user.Vorname + "' , nachname='"
-            + user.Nachname + "' , strasse='"
-            + user.Strasse + "' , telefon='"
-            + user.Telefon + "' , email='"
-            + user.Email + "' , hausnummer='"
-            + user.Hausnummer + "' , ortId='"
-            + user.OrtID + "' WHERE user.userId=" + user.UserID;
+        else
+        {
+            // City cannot be found because it is empty
+           sql = "UPDATE users SET vorname='"
+           + user.Vorname + "' , nachname='"
+           + user.Nachname + "' , strasse='"
+           + user.Strasse + "' , telefon='"
+           + user.Telefon + "' , email='"
+           + user.Email + "' , hausnummer='"
+           + user.Hausnummer + "', ortId=NULL WHERE userId=" + user.UserID;
+        }
+       
 
-
+        Debug.WriteLine(sql);
+        Debug.WriteLine("ORTID: " + user.OrtID);
         MySqlCommand update = connection.CreateCommand();
         update.CommandText = sql;
         update.ExecuteReader().Close();
