@@ -67,7 +67,7 @@
             this.input_HR.Margin = new System.Windows.Forms.Padding(4);
             this.input_HR.Name = "input_HR";
             this.input_HR.Size = new System.Drawing.Size(226, 22);
-            this.input_HR.TabIndex = 1;
+            this.input_HR.TabIndex = 5;
             // 
             // input_city
             // 
@@ -83,7 +83,7 @@
             this.input_telefon.Margin = new System.Windows.Forms.Padding(4);
             this.input_telefon.Name = "input_telefon";
             this.input_telefon.Size = new System.Drawing.Size(226, 22);
-            this.input_telefon.TabIndex = 4;
+            this.input_telefon.TabIndex = 6;
             // 
             // input_straße
             // 
@@ -91,7 +91,7 @@
             this.input_straße.Margin = new System.Windows.Forms.Padding(4);
             this.input_straße.Name = "input_straße";
             this.input_straße.Size = new System.Drawing.Size(226, 22);
-            this.input_straße.TabIndex = 5;
+            this.input_straße.TabIndex = 4;
             // 
             // input_postleitzahl
             // 
@@ -99,7 +99,7 @@
             this.input_postleitzahl.Margin = new System.Windows.Forms.Padding(4);
             this.input_postleitzahl.Name = "input_postleitzahl";
             this.input_postleitzahl.Size = new System.Drawing.Size(226, 22);
-            this.input_postleitzahl.TabIndex = 6;
+            this.input_postleitzahl.TabIndex = 2;
             // 
             // input_nachname
             // 
@@ -107,7 +107,7 @@
             this.input_nachname.Margin = new System.Windows.Forms.Padding(4);
             this.input_nachname.Name = "input_nachname";
             this.input_nachname.Size = new System.Drawing.Size(226, 22);
-            this.input_nachname.TabIndex = 7;
+            this.input_nachname.TabIndex = 1;
             // 
             // label1
             // 
@@ -155,7 +155,7 @@
             this.updateButton.Margin = new System.Windows.Forms.Padding(4);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(139, 36);
-            this.updateButton.TabIndex = 12;
+            this.updateButton.TabIndex = 9;
             this.updateButton.Text = "Aktualisieren";
             this.updateButton.UseVisualStyleBackColor = true;
             this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
@@ -166,7 +166,7 @@
             this.createButton.Margin = new System.Windows.Forms.Padding(4);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(139, 36);
-            this.createButton.TabIndex = 13;
+            this.createButton.TabIndex = 8;
             this.createButton.Text = "Erstellen";
             this.createButton.UseVisualStyleBackColor = true;
             this.createButton.Click += new System.EventHandler(this.createButton_Click_1);
@@ -177,7 +177,7 @@
             this.input_email.Margin = new System.Windows.Forms.Padding(4);
             this.input_email.Name = "input_email";
             this.input_email.Size = new System.Drawing.Size(226, 22);
-            this.input_email.TabIndex = 14;
+            this.input_email.TabIndex = 7;
             // 
             // label5
             // 
@@ -218,7 +218,6 @@
             this.label_name.Size = new System.Drawing.Size(44, 16);
             this.label_name.TabIndex = 18;
             this.label_name.Text = "Name";
-            
             // 
             // label9
             // 
@@ -266,7 +265,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 36);
-            this.button2.TabIndex = 23;
+            this.button2.TabIndex = 10;
             this.button2.Text = "Löschen";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);

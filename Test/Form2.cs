@@ -151,7 +151,8 @@ namespace Test
             }
             else
             {
-                if (int.TryParse(data.Hausnummer, out _))
+                if (int.TryParse(data.Hausnummer, out _) &&
+                    int.TryParse(data.Telefon, out _))
                 {
                     return true;
                 }

@@ -99,6 +99,26 @@ class DatabaseManager
             }
             newUser.OrtID = ortId.ToString();
         }
+        else
+        {
+            string sql =
+            "INSERT INTO users " +
+            "(vorname,nachname,strasse,hausnummer,telefon,email,ortId) " +
+            "VALUES " +
+            "('"
+            + newUser.Vorname + "','"
+            + newUser.Nachname + "','"
+            + newUser.Strasse + "','"
+            + newUser.Hausnummer + "','"
+            + newUser.Telefon + "','"
+            + newUser.Email + "','"
+            + newUser.OrtID + "'"
+            + ")";
+            MySqlCommand insert = connection.CreateCommand();
+            insert.CommandText = sql;
+            insert.ExecuteReader();
+            return;
+        }
        
         
         string insertSQL = 
