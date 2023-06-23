@@ -10,12 +10,14 @@ using System.Windows.Forms;
 
 namespace Test
 {
-    public partial class Form3 : Form
+    public partial class Form3 : System.Windows.Forms.Form
     {
         public Form3()
         {
             InitializeComponent();
+            DatabaseManager.EstablishConnection("127.0.0.1", "root", "Kaiser.331", "telefonbuch");
         }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -33,7 +35,7 @@ namespace Test
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
             form2.ShowDialog();
             this.Close();
         }
@@ -41,7 +43,7 @@ namespace Test
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","","");
             form2.ShowDialog();
             this.Close();
         }

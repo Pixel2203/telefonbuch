@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace Test
 {
-    public partial class Form1 : Form
+    public partial class Form1 : System.Windows.Forms.Form
     {
         public Form1()
         {
@@ -31,55 +32,39 @@ namespace Test
         DatabaseManager databaseManager = new DatabaseManager();
         private void Form1_Load(object sender, EventArgs e)
         {
-            databaseManager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
-
-            items.AddRange(new string[] { "Cat", "Dog", "Carrots", "Brocolli" });
-
-            foreach (string str in items)
+            List<UserEntry> entry = DatabaseManager.getUsersFromDatabase("SELECT * FROM users");
+            foreach(UserEntry ent in entry)
             {
-                listBox1.Items.Add(str);
-
+                listBox1.Items.Add(ent);
             }
         }
-       
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             string inputText = textBox1.Text.ToUpper();
             listBox1.Items.Clear();
-
-            string sql = "SELECT * FROM users, orte " +
-                         "WHERE VORNAME LIKE '"+inputText+ "' " +
-                         "OR NACHNAME LIKE '" + inputText + "' " +
-                         "OR STRASSE LIKE '" + inputText+ "' " +
-                         "OR STADT LIKE '" + inputText+ "' " +
-                         "OR TELEFON LIKE '" + inputText+ "' " +
-                         "OR EMAIL LIKE '" + inputText+ "' " +
-                         "OR orte.ID LIKE users.ORTID AND orte.NAME LIKE '" + inputText+"'";
-
-            MySqlDataReader reader = databaseManager.requestFromDatabase(sql);
+            string sql = "SELECT * FROM users " +
+                         "WHERE vorname LIKE '" + inputText + "%' " +
+                         "OR nachname LIKE '" + inputText + "%' " +
+                         "OR strasse LIKE '" + inputText + "%' " +
+                         "OR telefon LIKE '" + inputText + "%' " +
+                         "OR email LIKE '" + inputText + "%' ";
+                            
+            List<UserEntry> reader = DatabaseManager.getUsersFromDatabase(sql);
             List<string> foundItems = new List<string>();
-
-            foreach (string str in items)
+            foreach(UserEntry entry in reader)
             {
-                if (str.ToUpper().Contains(textBox1.Text.ToUpper()))
-                {
-                    listBox1.Items.Add(str);
-                }
+            
+                listBox1.Items.Add(entry) ;
             }
         }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            Form2 form2 = new Form2();
+            UserEntry ent = (UserEntry)listBox1.SelectedItem;
+            Debug.WriteLine("MEINE COOLE ID: " + ent.UserID);
+            Form2 form2 = new Form2("rw" , ent);
             form2.Show();
 
             //load user data
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-             new Form2().ShowDialog();
         }
 
         private void button2_Click_1(object sender, EventArgs e)

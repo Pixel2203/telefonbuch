@@ -56,16 +56,15 @@
             // input_vorname
             // 
             this.input_vorname.Location = new System.Drawing.Point(229, 94);
-            this.input_vorname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_vorname.Margin = new System.Windows.Forms.Padding(4);
             this.input_vorname.Name = "input_vorname";
             this.input_vorname.Size = new System.Drawing.Size(226, 22);
             this.input_vorname.TabIndex = 0;
-            this.input_vorname.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // input_HR
             // 
             this.input_HR.Location = new System.Drawing.Point(491, 272);
-            this.input_HR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_HR.Margin = new System.Windows.Forms.Padding(4);
             this.input_HR.Name = "input_HR";
             this.input_HR.Size = new System.Drawing.Size(226, 22);
             this.input_HR.TabIndex = 1;
@@ -73,7 +72,7 @@
             // input_city
             // 
             this.input_city.Location = new System.Drawing.Point(491, 206);
-            this.input_city.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_city.Margin = new System.Windows.Forms.Padding(4);
             this.input_city.Name = "input_city";
             this.input_city.Size = new System.Drawing.Size(226, 22);
             this.input_city.TabIndex = 3;
@@ -81,7 +80,7 @@
             // input_telefon
             // 
             this.input_telefon.Location = new System.Drawing.Point(229, 389);
-            this.input_telefon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_telefon.Margin = new System.Windows.Forms.Padding(4);
             this.input_telefon.Name = "input_telefon";
             this.input_telefon.Size = new System.Drawing.Size(226, 22);
             this.input_telefon.TabIndex = 4;
@@ -89,7 +88,7 @@
             // input_straße
             // 
             this.input_straße.Location = new System.Drawing.Point(229, 272);
-            this.input_straße.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_straße.Margin = new System.Windows.Forms.Padding(4);
             this.input_straße.Name = "input_straße";
             this.input_straße.Size = new System.Drawing.Size(226, 22);
             this.input_straße.TabIndex = 5;
@@ -97,7 +96,7 @@
             // input_postleitzahl
             // 
             this.input_postleitzahl.Location = new System.Drawing.Point(229, 206);
-            this.input_postleitzahl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_postleitzahl.Margin = new System.Windows.Forms.Padding(4);
             this.input_postleitzahl.Name = "input_postleitzahl";
             this.input_postleitzahl.Size = new System.Drawing.Size(226, 22);
             this.input_postleitzahl.TabIndex = 6;
@@ -105,7 +104,7 @@
             // input_nachname
             // 
             this.input_nachname.Location = new System.Drawing.Point(491, 94);
-            this.input_nachname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_nachname.Margin = new System.Windows.Forms.Padding(4);
             this.input_nachname.Name = "input_nachname";
             this.input_nachname.Size = new System.Drawing.Size(226, 22);
             this.input_nachname.TabIndex = 7;
@@ -119,7 +118,6 @@
             this.label1.Size = new System.Drawing.Size(62, 16);
             this.label1.TabIndex = 8;
             this.label1.Text = "Vorname";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -130,7 +128,6 @@
             this.label2.Size = new System.Drawing.Size(75, 16);
             this.label2.TabIndex = 9;
             this.label2.Text = "Postleitzahl";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -141,7 +138,6 @@
             this.label3.Size = new System.Drawing.Size(47, 16);
             this.label3.TabIndex = 10;
             this.label3.Text = "Straße";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -152,33 +148,33 @@
             this.label4.Size = new System.Drawing.Size(53, 16);
             this.label4.TabIndex = 11;
             this.label4.Text = "Telefon";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // updateButton
             // 
             this.updateButton.Location = new System.Drawing.Point(691, 489);
-            this.updateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.updateButton.Margin = new System.Windows.Forms.Padding(4);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(139, 36);
             this.updateButton.TabIndex = 12;
             this.updateButton.Text = "Aktualisieren";
             this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.button1_Click);
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // createButton
             // 
             this.createButton.Location = new System.Drawing.Point(526, 489);
-            this.createButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.createButton.Margin = new System.Windows.Forms.Padding(4);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(139, 36);
             this.createButton.TabIndex = 13;
             this.createButton.Text = "Erstellen";
             this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click_1);
             // 
             // input_email
             // 
             this.input_email.Location = new System.Drawing.Point(489, 389);
-            this.input_email.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.input_email.Margin = new System.Windows.Forms.Padding(4);
             this.input_email.Name = "input_email";
             this.input_email.Size = new System.Drawing.Size(226, 22);
             this.input_email.TabIndex = 14;
@@ -202,7 +198,6 @@
             this.label_kontakt.Size = new System.Drawing.Size(51, 16);
             this.label_kontakt.TabIndex = 16;
             this.label_kontakt.Text = "Kontakt";
-            this.label_kontakt.Click += new System.EventHandler(this.label6_Click);
             // 
             // label_adresse
             // 
@@ -244,7 +239,6 @@
             this.label10.Size = new System.Drawing.Size(38, 16);
             this.label10.TabIndex = 20;
             this.label10.Text = "Stadt";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label11
             // 
@@ -275,6 +269,7 @@
             this.button2.TabIndex = 23;
             this.button2.Text = "Löschen";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form2
             // 
@@ -304,7 +299,7 @@
             this.Controls.Add(this.input_city);
             this.Controls.Add(this.input_HR);
             this.Controls.Add(this.input_vorname);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
