@@ -50,7 +50,6 @@ namespace Test
                          "OR email LIKE '" + inputText + "%' ";
                             
             List<UserEntry> reader = DatabaseManager.getUsersFromDatabase(sql);
-            List<string> foundItems = new List<string>();
             foreach(UserEntry entry in reader)
             {
             

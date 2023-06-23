@@ -95,43 +95,17 @@ namespace Test
                 UserEntry data = getDataFromTextboxes();
 
                 // Überprüfen Sie, ob alle Eingabefelder nicht leer sind
-                
-                if (
-                    string.IsNullOrEmpty(data.Vorname) &&
-                    string.IsNullOrEmpty(data.Nachname) &&
-                    string.IsNullOrEmpty(data.Strasse) &&
-                    string.IsNullOrEmpty(data.Hausnummer) &&
-                    string.IsNullOrEmpty(data.Telefon) &&
-                    string.IsNullOrEmpty(data.Email) &&
-                    (string.IsNullOrEmpty(data.Plz) && string.IsNullOrEmpty(data.OrtName)  || string.Empty == data.Plz && string.Empty == data.OrtName  ) )
-                {
-                    MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
-                    return;
-                }
-                if(data.Plz != string.Empty)
-                {
-                    if (int.TryParse(data.Plz, out _) &&
-                    int.TryParse(data.Hausnummer, out _) &&
-                    int.TryParse(data.Telefon, out _))
-                    {
-                        DatabaseManager.addUserToDatabase(getDataFromTextboxes());
-                        MessageBox.Show("Datensatz erfolgreich erstellt.");
-                        return;
-                    }
-                   
 
+                if (checkData(data))
+                {
+                    DatabaseManager.addUserToDatabase(getDataFromTextboxes());
+                    MessageBox.Show("Datensatz erfolgreich erstellt.");
                 }
                 else
                 {
-                    if(int.TryParse(data.Hausnummer, out _))
-                    {
-                        DatabaseManager.addUserToDatabase(getDataFromTextboxes());
-                        MessageBox.Show("Datensatz erfolgreich erstellt.");
-                        return;
-                    }
-
+                    MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!");
                 }
-                MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!");
+                
 
             }
             catch (Exception ex)
@@ -152,6 +126,24 @@ namespace Test
 
             
         }
+        bool IsValidEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false; // suggested by @TK-421
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         private bool checkData(UserEntry data)
         {
             if (
@@ -166,13 +158,17 @@ namespace Test
                 MessageBox.Show("Bitte füllen Sie alle erforderlichen Felder aus.");
                 return false;
             }
-
+            if (!IsValidEmail(data.Email))
+            {
+                return false;
+            }
             if (data.Plz != string.Empty)
             {
                 if (int.TryParse(data.Plz, out _) &&
                 int.TryParse(data.Hausnummer, out _) &&
                 int.TryParse(data.Telefon, out _))
                 {
+
                     return true;
                 }
 

@@ -46,9 +46,9 @@ class DatabaseManager
             string vorname = reader.GetString("vorname");
             string nachname = reader.GetString("nachname");
             string strasse = reader.GetString("strasse");
-            string hausnummer = reader.GetInt32("hausnummer").ToString() ?? "-";
+            string hausnummer = reader.GetInt32("hausnummer").ToString();
             string telefon = reader.GetString("telefon");
-            string email = reader.GetString("email") ?? "-";
+            string email = reader.GetString("email");
             string ortid = "-";
             try
             {
@@ -57,14 +57,16 @@ class DatabaseManager
             string ortname = "";
             string plz = "";
 
-            list.Add(new UserEntry(userId,vorname,nachname,strasse,hausnummer,telefon,email,ortid,ortname,plz));
+            list.Add(new UserEntry(userId,vorname,nachname,
+                strasse,hausnummer,telefon,email,ortid,ortname,plz));
         }
         reader.Close();
         return list;
     }
     public static void deleteUser(string userId)
     {
-        string sql = "DELETE FROM users WHERE userId= '" + userId + "'";
+        string sql = "DELETE FROM users WHERE userId= '" 
+                    + userId + "'";
         MySqlCommand cmd = connection.CreateCommand();
         cmd.CommandText = sql;
         cmd.ExecuteReader().Close();
@@ -88,23 +90,21 @@ class DatabaseManager
                 {
                     ortId = int.Parse(ort.ortid);
                 }
-                
             }
             catch (Exception ex)
             {
                 // City not found --> Create New City entry
-
                 createOrt(newUser.OrtName, newUser.Plz);
-
-
                 ortId = int.Parse(getOrtByAttributes(newUser.OrtName, newUser.Plz).ortid);
-
             }
             newUser.OrtID = ortId.ToString();
         }
        
         
-        string insertSQL = "INSERT INTO users (vorname,nachname,strasse,hausnummer,telefon,email,ortId) VALUES " +
+        string insertSQL = 
+            "INSERT INTO users " +
+            "(vorname,nachname,strasse,hausnummer,telefon,email,ortId) " +
+            "VALUES " +
             "('"
             + newUser.Vorname + "','"
             + newUser.Nachname + "','"
