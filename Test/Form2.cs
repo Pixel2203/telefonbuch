@@ -187,14 +187,21 @@ namespace Test
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
             var result = MessageBox.Show("Soll dieser Benutzer entfernt werden?", "Benutzer löschen", MessageBoxButtons.YesNo);
             if(result == DialogResult.Yes)
             {
                 DatabaseManager.deleteUser(this.userId);
                 MessageBox.Show("Eintrag wurde gelöscht");
+                 this.Hide();
                 this.Close();
             }
-           
         }
     }
 

@@ -19,6 +19,14 @@ namespace Test
         }
 
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+            this.Close();
+        }
+
         private void Form3_Load(object sender, EventArgs e)
         {
 
@@ -26,17 +34,26 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
-            form2.Show();
             this.Hide();
+            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
+            form2.ShowDialog();
+            this.Close();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","","");
+            form2.ShowDialog();
+            this.Close();
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
             this.Hide();
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+            this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
