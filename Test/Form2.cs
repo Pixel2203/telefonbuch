@@ -38,26 +38,6 @@ namespace Test
                 button2.Hide();
             }
         }
-        private void Form2_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            if(args == "rw")
-            {
-                this.Close();
-                return;
-            }
-            Form3 form3 = new Form3();
-            form3.Show();
-            this.Close();
-        }
         private void insertDataIntoTextboxes(UserEntry entry) {
             this.input_city.Text = entry.OrtName;
             this.input_email.Text = entry.Email;
@@ -83,11 +63,6 @@ namespace Test
 
                 );
         }
-        private void createButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void createButton_Click_1(object sender, EventArgs e)
         {
             try
@@ -188,20 +163,19 @@ namespace Test
         private void button2_Click(object sender, EventArgs e)
         {
 
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
             var result = MessageBox.Show("Soll dieser Benutzer entfernt werden?", "Benutzer löschen", MessageBoxButtons.YesNo);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 DatabaseManager.deleteUser(this.userId);
                 MessageBox.Show("Eintrag wurde gelöscht");
-                 this.Hide();
+                this.Hide();
                 this.Close();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 

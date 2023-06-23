@@ -218,7 +218,7 @@
             this.label_name.Size = new System.Drawing.Size(44, 16);
             this.label_name.TabIndex = 18;
             this.label_name.Text = "Name";
-            this.label_name.Click += new System.EventHandler(this.label8_Click);
+            
             // 
             // label9
             // 
@@ -258,7 +258,7 @@
             this.button1.TabIndex = 22;
             this.button1.Text = "zurück";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -302,7 +302,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form2";
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

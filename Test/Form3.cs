@@ -22,7 +22,7 @@ namespace Test
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2("w", null);
             form2.ShowDialog();
             this.Close();
         }
@@ -34,16 +34,14 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
             form2.ShowDialog();
-            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","","");
+            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
             form2.ShowDialog();
             this.Close();
         }
