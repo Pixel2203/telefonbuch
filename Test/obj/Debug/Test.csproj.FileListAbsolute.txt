@@ -124,3 +124,43 @@ C:\Users\marvin.kaiser\Desktop\Programming\Schule\telefonbuch\Test\bin\Debug\K4o
 C:\Users\marvin.kaiser\Desktop\Programming\Schule\telefonbuch\Test\bin\Debug\System.IO.Pipelines.xml
 C:\Users\marvin.kaiser\Desktop\Programming\Schule\telefonbuch\Test\bin\Debug\K4os.Hash.xxHash.xml
 C:\Users\marvin.kaiser\Desktop\Programming\Schule\telefonbuch\Test\obj\Debug\Test.csproj.CopyComplete
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\Test.exe.config
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\Test.exe
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\Test.pdb
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\MySql.Data.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\Google.Protobuf.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\K4os.Compression.LZ4.Streams.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\BouncyCastle.Crypto.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Memory.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Threading.Tasks.Extensions.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\K4os.Compression.LZ4.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.IO.Pipelines.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\K4os.Hash.xxHash.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Numerics.Vectors.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Buffers.dll
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\MySql.Data.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\Google.Protobuf.pdb
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\Google.Protobuf.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\K4os.Compression.LZ4.Streams.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\BouncyCastle.Crypto.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Memory.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Threading.Tasks.Extensions.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\K4os.Compression.LZ4.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.IO.Pipelines.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\K4os.Hash.xxHash.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Numerics.Vectors.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\bin\Debug\System.Buffers.xml
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.csproj.AssemblyReference.cache
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.csproj.SuggestedBindingRedirects.cache
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.Form1.resources
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.Form2.resources
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.Form3.resources
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.Properties.Resources.resources
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.UserControl1.resources
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.csproj.GenerateResource.cache
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.csproj.CopyComplete
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.exe
+F:\Neuer PC\Programmieren\C#\Telefonbuch\telefonbuch\Test\obj\Debug\Test.pdb

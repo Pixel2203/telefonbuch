@@ -12,51 +12,40 @@ namespace Test
 {
     public partial class Form3 : System.Windows.Forms.Form
     {
+        private bool connectionEstablished = false;
         public Form3()
         {
             InitializeComponent();
-            DatabaseManager.EstablishConnection("127.0.0.1", "root", "Kaiser.331", "telefonbuch");
+            this.connectionEstablished = DatabaseManager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
         }
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form2 form2 = new Form2("w", null);
-            form2.ShowDialog();
-            this.Close();
-        }
-
-        private void Form3_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
-            form2.ShowDialog();
+            if (this.connectionEstablished)
+            {
+                Form2 form2 = new Form2("w", null);
+                form2.ShowDialog();
+            }
+            else
+            {
+
+            }
+        
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form2 form2 = new Form2("w",new UserEntry("","","","","","","","","",""));
-            form2.ShowDialog();
-            this.Close();
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form1 form1 = new Form1();
-            form1.ShowDialog();
-            this.Close();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            if (this.connectionEstablished)
+            {
+                this.Hide();
+                Form1 form1 = new Form1();
+                form1.ShowDialog();
+                this.Close();
+            }else
+            {
+                MessageBox.Show("Konnte keine Verbindung zur Datenbank aufbauen", "Verbindungsfehler");
+            }
+         
         }
     }
 }

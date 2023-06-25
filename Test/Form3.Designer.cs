@@ -75,7 +75,6 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Telefonbuch";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form3
             // 
@@ -89,7 +88,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form3";
             this.Text = "Telefonbuch";
-            this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -116,7 +116,7 @@ class DatabaseManager
             + ")";
             MySqlCommand insert = connection.CreateCommand();
             insert.CommandText = sql;
-            insert.ExecuteReader();
+            insert.ExecuteReader().Close();
             return;
         }
        
@@ -136,7 +136,7 @@ class DatabaseManager
             + ")";
         MySqlCommand insertCommand = connection.CreateCommand();
         insertCommand.CommandText = insertSQL;
-        insertCommand.ExecuteReader();
+        insertCommand.ExecuteReader().Close();
 
     }
     public static UserEntry getCityData(UserEntry ent)

@@ -56,7 +56,8 @@ namespace Test
                 listBox1.Items.Add(entry) ;
             }
         }
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+     
+        private void listBox1_DoubleClick(object sender, EventArgs e)
         {
             UserEntry ent = (UserEntry)listBox1.SelectedItem;
             Debug.WriteLine("MEINE COOLE ID: " + ent.UserID);

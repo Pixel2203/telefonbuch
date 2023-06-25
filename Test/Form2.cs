@@ -119,6 +119,17 @@ namespace Test
                 return false;
             }
         }
+        private bool digitOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if(c <'0' || c > '9')
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private bool checkData(UserEntry data)
         {
             if (
@@ -141,7 +152,7 @@ namespace Test
             {
                 if (int.TryParse(data.Plz, out _) &&
                 int.TryParse(data.Hausnummer, out _) &&
-                int.TryParse(data.Telefon, out _))
+                digitOnly(data.Telefon))
                 {
 
                     return true;
