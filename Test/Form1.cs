@@ -40,7 +40,10 @@ namespace Test
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string inputText = textBox1.Text.ToUpper();
+            
+            string[] arguments = textBox1.Text.ToUpper().Split(' ');
+            string inputText = arguments[0];
+
             listBox1.Items.Clear();
             string sql = "SELECT * FROM users " +
                          "WHERE vorname LIKE '" + inputText + "%' " +
@@ -52,8 +55,31 @@ namespace Test
             List<UserEntry> reader = DatabaseManager.getUsersFromDatabase(sql);
             foreach(UserEntry entry in reader)
             {
-            
-                listBox1.Items.Add(entry) ;
+                bool add = true ;
+                if(arguments.Length > 1)
+                {
+                    for(int i = 1; i < arguments.Length; i++)
+                    {
+                        if (!entry.Vorname.ToUpper().StartsWith(arguments[i]) &&
+                            !entry.Nachname.ToUpper().StartsWith(arguments[i]) &&
+                            !entry.Strasse.ToUpper().StartsWith(arguments[i]) &&
+                            !entry.Telefon.ToUpper().StartsWith(arguments[i]) &&
+                            !entry.Email.ToUpper().StartsWith(arguments[i]))
+                        {
+                            if(i == arguments.Length - 1)
+                            {
+                                add = false;
+                            }
+                        }
+                        
+                    }
+                }
+                if (add)
+                {
+                    listBox1.Items.Add(entry);
+                }
+                
+
             }
         }
      

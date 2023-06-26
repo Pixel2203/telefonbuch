@@ -38,31 +38,11 @@ namespace Test
                 button2.Hide();
             }
         }
-        private void insertDataIntoTextboxes(UserEntry entry) {
-            this.input_city.Text = entry.OrtName;
-            this.input_email.Text = entry.Email;
-            this.input_vorname.Text = entry.Vorname;
-            this.input_nachname.Text = entry.Nachname;
-            this.input_postleitzahl.Text = entry.Plz;
-            this.input_telefon.Text = entry.Telefon;
-            this.input_HR.Text = entry.Hausnummer;
-            this.input_straße.Text = entry.Strasse;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
-        private UserEntry getDataFromTextboxes() {
-            return new UserEntry(
-                "",
-                this.input_vorname.Text,
-                this.input_nachname.Text,
-                this.input_straße.Text,
-                this.input_HR.Text,
-                this.input_telefon.Text,
-                this.input_email.Text,
-                "",
-                this.input_city.Text,
-                this.input_postleitzahl.Text
 
-                );
-        }
         private void createButton_Click_1(object sender, EventArgs e)
         {
             try
@@ -101,7 +81,34 @@ namespace Test
 
             
         }
-        bool IsValidEmail(string email)
+        private void insertDataIntoTextboxes(UserEntry entry)
+        {
+            this.input_city.Text = entry.OrtName;
+            this.input_email.Text = entry.Email;
+            this.input_vorname.Text = entry.Vorname;
+            this.input_nachname.Text = entry.Nachname;
+            this.input_postleitzahl.Text = entry.Plz;
+            this.input_telefon.Text = entry.Telefon;
+            this.input_HR.Text = entry.Hausnummer;
+            this.input_straße.Text = entry.Strasse;
+        }
+        private UserEntry getDataFromTextboxes()
+        {
+            return new UserEntry(
+                "",
+                this.input_vorname.Text,
+                this.input_nachname.Text,
+                this.input_straße.Text,
+                this.input_HR.Text,
+                this.input_telefon.Text,
+                this.input_email.Text,
+                "",
+                this.input_city.Text,
+                this.input_postleitzahl.Text
+
+                );
+        }
+        private bool IsValidEmail(string email)
         {
             var trimmedEmail = email.Trim();
 
@@ -185,10 +192,7 @@ namespace Test
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
     }
 
 }

@@ -16,7 +16,7 @@ namespace Test
         public Form3()
         {
             InitializeComponent();
-            this.connectionEstablished = DatabaseManager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
+            this.connectionEstablished = DatabaseManager.EstablishConnection("127.0.0.1", "root", "Kaiser.331", "telefonbuch");
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -27,7 +27,7 @@ namespace Test
             }
             else
             {
-
+                MessageBox.Show("Konnte keine Verbindung zur Datenbank aufbauen", "Verbindungsfehler");
             }
         
         }

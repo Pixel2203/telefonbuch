@@ -36,9 +36,7 @@ class DatabaseManager
     }
     public static List<UserEntry> getUsersFromDatabase(string sql)
     {
-        MySqlCommand cmd = connection.CreateCommand();
-        cmd.CommandText = sql;
-        MySqlDataReader reader = cmd.ExecuteReader();
+        MySqlDataReader reader =runCommandWithReader(sql);
         List<UserEntry> list = new List<UserEntry>();
         while (reader.Read())
         {
@@ -67,9 +65,7 @@ class DatabaseManager
     {
         string sql = "DELETE FROM users WHERE userId= '" 
                     + userId + "'";
-        MySqlCommand cmd = connection.CreateCommand();
-        cmd.CommandText = sql;
-        cmd.ExecuteReader().Close();
+        runCommand(sql);
     }
 
     public static void addUserToDatabase(UserEntry newUser) {
@@ -111,8 +107,7 @@ class DatabaseManager
             + newUser.Strasse + "','"
             + newUser.Hausnummer + "','"
             + newUser.Telefon + "','"
-            + newUser.Email + "','"
-            + newUser.OrtID + "'"
+            + newUser.Email + "', NULL"
             + ")";
             MySqlCommand insert = connection.CreateCommand();
             insert.CommandText = sql;
@@ -134,16 +129,13 @@ class DatabaseManager
             + newUser.Email + "','"
             + newUser.OrtID + "'"
             + ")";
-        MySqlCommand insertCommand = connection.CreateCommand();
-        insertCommand.CommandText = insertSQL;
-        insertCommand.ExecuteReader().Close();
+        runCommand(insertSQL);
 
     }
     public static UserEntry getCityData(UserEntry ent)
     {
-        MySqlCommand addCityCMD = connection.CreateCommand();
-        addCityCMD.CommandText = "SELECT name,plz FROM orte,users WHERE users.ortId = orte.ortId AND users.userId =" + ent.UserID + " AND users.ortId IS NOT NULL";
-        MySqlDataReader reader = addCityCMD.ExecuteReader();
+        string sql = "SELECT name,plz FROM orte,users WHERE users.ortId = orte.ortId AND users.userId =" + ent.UserID + " AND users.ortId IS NOT NULL";
+        MySqlDataReader reader = runCommandWithReader(sql);
         reader.Read();
         try
         {
@@ -196,31 +188,20 @@ class DatabaseManager
            + user.Email + "' , hausnummer='"
            + user.Hausnummer + "', ortId=NULL WHERE userId=" + user.UserID;
         }
-       
 
-        Debug.WriteLine(sql);
-        Debug.WriteLine("ORTID: " + user.OrtID);
-        MySqlCommand update = connection.CreateCommand();
-        update.CommandText = sql;
-        update.ExecuteReader().Close();
+        runCommand(sql);
 
 
     }
     private static void createOrt(string ortname, string plz)
     {
         string addCitySql = "INSERT INTO orte (name,plz) VALUES ('" + ortname  + "','" +plz + "')";
-
-
-        MySqlCommand addCityCMD = connection.CreateCommand();
-        addCityCMD.CommandText = addCitySql;
-        addCityCMD.ExecuteReader().Close();
+        runCommand(addCitySql);
     }
     private static Ort getOrtById(string ortId)
     {
         string sql = "SELECT * FROM orte WHERE ortId=" + ortId;
-        MySqlCommand ort = connection.CreateCommand();
-        ort.CommandText = sql;
-        MySqlDataReader r = ort.ExecuteReader();
+        MySqlDataReader r = runCommandWithReader(sql);
         try
         {
             string name = r.GetString("name");
@@ -238,9 +219,7 @@ class DatabaseManager
     private static Ort getOrtByAttributes(string name, string plz)
     {
         string sql = "SELECT * FROM orte WHERE name='" + name + "' AND plz ='" + plz + "'";
-        MySqlCommand ort = connection.CreateCommand();
-        ort.CommandText = sql;
-        MySqlDataReader r = ort.ExecuteReader();
+        MySqlDataReader r = runCommandWithReader(sql);
         r.Read();
         
         try
@@ -254,6 +233,19 @@ class DatabaseManager
             r.Close();
             return null;
         }
+    }
+    private static void runCommand(string sql)
+    {
+        MySqlCommand addCityCMD = connection.CreateCommand();
+        addCityCMD.CommandText = sql;
+        addCityCMD.ExecuteReader().Close();
+    }
+    private static MySqlDataReader runCommandWithReader(string sql)
+    {
+        MySqlCommand ort = connection.CreateCommand();
+        ort.CommandText = sql;
+        MySqlDataReader r = ort.ExecuteReader();
+        return r;
     }
     class Ort
     {
