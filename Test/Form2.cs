@@ -114,7 +114,7 @@ namespace Test
 
             if (trimmedEmail.EndsWith("."))
             {
-                return false; // suggested by @TK-421
+                return false; 
             }
             try
             {

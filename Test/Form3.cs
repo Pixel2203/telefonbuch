@@ -16,7 +16,7 @@ namespace Test
         public Form3()
         {
             InitializeComponent();
-            this.connectionEstablished = DatabaseManager.EstablishConnection("127.0.0.1", "root", "Kaiser.331", "telefonbuch");
+            this.connectionEstablished = DatabaseManager.EstablishConnection("127.0.0.1", "root", "", "telefonbuch");
         }
         private void button1_Click(object sender, EventArgs e)
         {
