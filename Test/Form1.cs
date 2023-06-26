@@ -43,7 +43,6 @@ namespace Test
             
             string[] arguments = textBox1.Text.ToUpper().Split(' ');
             string inputText = arguments[0];
-
             listBox1.Items.Clear();
             string sql = "SELECT * FROM users " +
                          "WHERE vorname LIKE '" + inputText + "%' " +
@@ -51,20 +50,19 @@ namespace Test
                          "OR strasse LIKE '" + inputText + "%' " +
                          "OR telefon LIKE '" + inputText + "%' " +
                          "OR email LIKE '" + inputText + "%' ";
-                            
             List<UserEntry> reader = DatabaseManager.getUsersFromDatabase(sql);
-            foreach(UserEntry entry in reader)
+            for(int c = 0; c < reader.Count; c++)
             {
                 bool add = true ;
                 if(arguments.Length > 1)
                 {
                     for(int i = 1; i < arguments.Length; i++)
                     {
-                        if (!entry.Vorname.ToUpper().StartsWith(arguments[i]) &&
-                            !entry.Nachname.ToUpper().StartsWith(arguments[i]) &&
-                            !entry.Strasse.ToUpper().StartsWith(arguments[i]) &&
-                            !entry.Telefon.ToUpper().StartsWith(arguments[i]) &&
-                            !entry.Email.ToUpper().StartsWith(arguments[i]))
+                        if (!reader[c].Vorname.ToUpper().StartsWith(arguments[i]) &&
+                            !reader[c].Nachname.ToUpper().StartsWith(arguments[i]) &&
+                            !reader[c].Strasse.ToUpper().StartsWith(arguments[i]) &&
+                            !reader[c].Telefon.ToUpper().StartsWith(arguments[i]) &&
+                            !reader[c].Email.ToUpper().StartsWith(arguments[i]))
                         {
                             if(i == arguments.Length - 1)
                             {
@@ -76,7 +74,7 @@ namespace Test
                 }
                 if (add)
                 {
-                    listBox1.Items.Add(entry);
+                    listBox1.Items.Add(reader[c]);
                 }
                 
 
