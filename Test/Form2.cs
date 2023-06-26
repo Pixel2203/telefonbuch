@@ -58,7 +58,7 @@ namespace Test
                 }
                 else
                 {
-                    MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!");
+                    MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!", "Falscher Datentyp");
                 }
                 
 
@@ -77,6 +77,10 @@ namespace Test
                 data.UserID = this.userId;
                 DatabaseManager.updateUser(data);
                 MessageBox.Show("Eintrag erfolgreich aktualisiert!");
+            }
+            else
+            {
+                MessageBox.Show("Daten entsprechen nicht dem richtigen Typ!", "Falscher Datentyp");
             }
 
             
@@ -170,7 +174,7 @@ namespace Test
             else
             {
                 if (int.TryParse(data.Hausnummer, out _) &&
-                    int.TryParse(data.Telefon, out _))
+                    digitOnly(data.Telefon))
                 {
                     return true;
                 }
