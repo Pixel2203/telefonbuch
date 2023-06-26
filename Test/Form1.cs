@@ -76,8 +76,6 @@ namespace Test
                 {
                     listBox1.Items.Add(reader[c]);
                 }
-                
-
             }
         }
      
